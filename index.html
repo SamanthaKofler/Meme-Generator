@@ -1,14 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memege</title>
+    <title>Memegen</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    
 
-    <script src="js/main.js"></script>
+<body onload="onInit()">
+
+    <header class="flex space-between align-center">
+        <!-- <div class="header-container"> -->
+        <div class="logo">meme<span>gen</span></div>
+        <ul class="nav-bar clean-list">
+            <li><a href="index.html">Gallery</a></li>
+            <li><a href="#">My Memes</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <!-- </div> -->
+    </header>
+
+    <section class="gallery">
+        <!-- <p>Choose a picture</p> -->
+        <div class="search-container">
+            <input id="keywords-list" list="keywords" type="text" placeholder="Search">
+            <img src="/DESIGN/Meme1 - Sergei/ICONS/search-icon.png" alt="" class="icon-search" onclick="onSearch()">
+            <datalist id="keywords"></datalist>
+            <div class="keywords">
+            </div>
+        </div>
+
+        <div class="images-container"></div>
+
+    </section>
+
+    <section class="meme-section">
+        <div class="meme-container flex center">
+            <section>
+                <canvas width="500" height="500"></canvas>
+            </section>
+
+            <section class="editor-container">
+                <div>
+                    <input id="text" type="text" placeholder="Your text" oninput="setText(this.value)">
+                </div>
+                <div>
+                    <img src="/DESIGN/arrow-up.png" alt="" class="icon" onclick="onMoveUp()">
+                    <img src="/DESIGN/arrow-down.png" alt="" class="icon" onclick="onMoveDown()">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""
+                        class="icon" onclick="onSwitchLine()">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/add.png" alt="" class="icon" onclick="onAddLine()">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/trash.png" alt="" class="icon" onclick="onDeleteLine()">
+                </div>
+                <div>
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/increase font - icon.png" alt="" class="icon"
+                        onclick="onIncreaseFont()">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/decrease font - icon.png" alt="" class="icon"
+                        onclick="onDecreaseFont()">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/align-to-left.png" alt="" class="icon"
+                        onclick="onAlign('right')">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/center-text-alignment.png" alt="" class="icon"
+                        onclick="onAlign('center')">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/align-to-right.png" alt="" class="icon"
+                        onclick="onAlign('left')">
+                </div>
+                <div>
+
+                    <select name="font-family" id="font-family" onchange="onSetFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="monospace">Monospace</option>
+                        <option value="Georgia">Georgia</option>
+                    </select>
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/text stroke.png" alt="" class="icon">
+                    <input type="color" class="color" onblur="onSetStrokeColor(this.value)">
+                    <img src="/DESIGN/Meme1 - Sergei/ICONS/paint-board-and-brush.png" alt="" class="icon">
+                    <input type="color" class="color" onblur="onSetFillColor(this.value)">
+                </div>
+
+                <div class="load-container">
+                    <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
+                </div>
+
+
+            </section>
+        </div>
+
+    </section>
+
+
+    <footer>
+        <div class="logo">meme<span>gen</span></div>
+        <div class="copyright">&copy All Rights Reserved 2020</div>
+    </footer>
+
+    <script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
 </body>
+
 </html>
