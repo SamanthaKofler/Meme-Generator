@@ -58,13 +58,25 @@ header li a:hover {
     margin: 1rem;
 }
 
-.gallery p {
+/* .gallery p {
     text-align: center;
     font-size: 1.5rem;
-}
+} */
 
 .search-container {
+    font-size: 1.5rem;
+    /* display: inline; */
     margin: 4rem;
+}
+
+.search-container > * {
+    /* display: inline; */
+}
+
+
+.mode-keywords {
+    display: inline;
+    margin: 20px;
 }
 
 .search-container input {

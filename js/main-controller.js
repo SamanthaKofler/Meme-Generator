@@ -4,6 +4,7 @@ function onInit() {
     createImgs();
     renderImgs();
     renderDatalist();
+    renderKeywords();
 }
 
 function renderImgs(imgs) {
@@ -15,7 +16,7 @@ function renderImgs(imgs) {
 }
 
 function renderDatalist() {
-    var keywords = getKeywords();
+    var keywords = getSomeKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
         strHTMLs.push(`<option value="${keyword}">`);
@@ -27,8 +28,10 @@ function renderKeywords() {
     var keywords = getSomeKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
-        var strHTML = `<p style="font-size:${keywords[keyword] * }>${keyword}`
+        var strHTML = `<p class="mode-keywords" style="font-size:${keywords[keyword] * 0.3}rem">${keyword}`;
+        strHTMLs.push(strHTML);
     }
+    document.querySelector('.keywords').innerHTML = strHTMLs.join('');
 }
 
 function onIncreaseFont() {
