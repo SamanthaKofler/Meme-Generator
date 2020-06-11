@@ -5,6 +5,7 @@ function onInit() {
     renderImgs();
     renderDatalist();
     renderKeywords();
+    getMyMemes();
 }
 
 function renderImgs(imgs) {

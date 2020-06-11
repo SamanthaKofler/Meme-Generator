@@ -256,9 +256,13 @@ function deleteLine() {
     drawCanvas();
 }
 
-function saveMeme() {
+function getMyMemes() {
     gMyMemes = loadFromStorage('My Memes');
     if(!gMyMemes.length) gMyMemes = [];
+}
+
+function saveMeme() {
+    getMyMemes();
     var dataUrl = gElCanvas.toDataURL();
     gMyMemes.push(dataUrl);
     saveToLocalStorage('My Memes', gMyMemes);
@@ -271,8 +275,8 @@ function saveToLocalStorage(key, val) {
 }
 
 function loadFromStorage(key) {
-    var val = localStorage.getItem(key)
-    return JSON.parse(val)
+    var val = localStorage.getItem(key);
+    return JSON.parse(val);
 }
 
 
