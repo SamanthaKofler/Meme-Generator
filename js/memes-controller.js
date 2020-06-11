@@ -11,13 +11,13 @@ function onInit() {
 
 function renderMemes() {
     var memeURLs = loadFromStorage('My Memes');
-    for (var i = 0; i < memeURLs.length; i++) {
+    memeURLs.forEach(function(memeURL) {
         var img = new Image;
-        img.src = memeURLs[i];
+        img.src = memeURL;
         img.onload = function () {
             gCtx.drawImage(img, 0, 0);
-        };
-    }
+        }
+    });
 }
 
 

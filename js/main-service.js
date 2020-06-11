@@ -4,7 +4,7 @@ var gImgs = [];
 var gImgId = 1;
 var gCurrImg;
 var gIsFiltering = false;
-var gMyMemes = [];
+var gMyMemes;
 var gIsDragging = false;
 
 var gElCanvas;
@@ -43,7 +43,6 @@ var gKeywords = {
     'toys': 1,
     'toy story': 1,
 }
-
 
 function getSomeKeywords() {
     var selectedKeywords = {
@@ -258,15 +257,24 @@ function deleteLine() {
 }
 
 function saveMeme() {
+    gMyMemes = loadFromStorage('My Memes');
+    if(!gMyMemes.length) gMyMemes = [];
     var dataUrl = gElCanvas.toDataURL();
     gMyMemes.push(dataUrl);
     saveToLocalStorage('My Memes', gMyMemes);
+    console.log(gMyMemes);
 }
 
 function saveToLocalStorage(key, val) {
     var json = JSON.stringify(val);
     localStorage.setItem(key, json);
 }
+
+function loadFromStorage(key) {
+    var val = localStorage.getItem(key)
+    return JSON.parse(val)
+}
+
 
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
@@ -287,7 +295,6 @@ function searchImgs(keyword) {
 function uploadImg(elForm, ev) {
     ev.preventDefault();
     document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
-
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
@@ -296,7 +303,6 @@ function uploadImg(elForm, ev) {
            Share on Facebook   
         </a>`
     }
-
     doUploadImg(elForm, onSuccess);
 }
 
