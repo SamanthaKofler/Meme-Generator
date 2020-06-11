@@ -8,15 +8,16 @@ function onInit() {
 }
 
 function renderImgs(imgs) {
-    if (document.querySelector('#keywords-list').value === '') imgs = getImgs();
-    var strHTML = imgs.map(function(img) {
+    if (!gIsFiltering) imgs = getImgs();
+    console.log(imgs)
+    var strHTML = imgs.map(function (img) {
         return `<img class="image" src="${img.url}" alt="" onclick="onStart('${img.id}')">`
     }).join('');
     document.querySelector('.images-container').innerHTML = strHTML;
 }
 
 function renderDatalist() {
-    var keywords = getSomeKeywords();
+    var keywords = getAllKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
         strHTMLs.push(`<option value="${keyword}">`);
@@ -28,7 +29,7 @@ function renderKeywords() {
     var keywords = getSomeKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
-        var strHTML = `<p class="mode-keywords" style="font-size:${keywords[keyword] * 0.3}rem">${keyword}`;
+        var strHTML = `<li class="mode-keywords" style="font-size:${keywords[keyword] * 0.3}rem" onclick="searchImgs('${keyword}')">${keyword}</li>`;
         strHTMLs.push(strHTML);
     }
     document.querySelector('.keywords').innerHTML = strHTMLs.join('');
@@ -56,6 +57,7 @@ function onSwitchLine() {
 }
 
 function onStart(imgId) {
+    getCanvas();
     setCurrImg(imgId);
     createMeme();
     showEditor();
@@ -93,5 +95,21 @@ function onDeleteLine() {
 
 function onSearch() {
     var searchedKeyword = document.querySelector('#keywords-list').value;
+    if (!searchedKeyword) {
+        renderImgs();
+        return;
+    };
     searchImgs(searchedKeyword);
+}
+
+function onDownloadCanvas(eLink) {
+    downloadCanvas(eLink);
+}
+
+function onSave() {
+    saveMeme();
+}
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
 }

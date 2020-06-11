@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My memes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-memes.css">
+</head>
+<body>
+    
+<body onload="onInit()">
+    <div class="screen" onclick="onToggleMenu()"></div>
+    <header >
+        <div class="header-container container flex space-between align-center">
+        <div class="logo">meme<span>gen</span></div>
+        <button class="btn-menu" onclick="onToggleMenu()">☰</button>
+        <ul class="nav-bar clean-list">
+            <li><a href="index.html">Gallery</a></li>
+            <li><a href="memes.html">My Memes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        </div>
+    </header>
+    <main>
+        <div class="title">My Memes:</div>
+        <div class="meme-gallery">
+            <canvas width="500" height="500"></canvas>
+        </div>
+
+    </main>
+
+    <footer class="flex center align-center">
+        <div class="logo">meme<span>gen</span></div>
+        <div class="copyright">&copy All Rights Reserved 2020</div>
+    </footer>
+
+    <script src="js/memes-controller.js"></script>
+    <!-- <script src="js/memes-service.js"></script> -->
+    
+</body>
+</html>

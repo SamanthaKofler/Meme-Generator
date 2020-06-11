@@ -3,6 +3,8 @@
 var gImgs = [];
 var gImgId = 1;
 var gCurrImg;
+var gIsFiltering = false;
+var gMyMemes = [];
 
 var gElCanvas;
 var gCtx;
@@ -44,14 +46,18 @@ var gKeywords = {
 
 function getSomeKeywords() {
     var selectedKeywords = {
-        'funny': 6,
-        'person': 15,
-        'animal': 3,
-        'cute': 5,
-        'president': 3,
-        'child': 5
+        'funny': gKeywords.funny,
+        'person': gKeywords.person,
+        'animal': gKeywords.animal,
+        'cute': gKeywords.cute,
+        'president': gKeywords.president,
+        'child': gKeywords.child
     }
     return selectedKeywords;
+}
+
+function getAllKeywords() {
+    return gKeywords;
 }
 
 function createImgs() {
@@ -77,7 +83,7 @@ function createImgs() {
 
 function createImgObj(keywords) {
     var img = {
-        url: 'meme-imgs (square)/' + gImgId+ '.jpg',
+        url: 'meme-imgs (square)/' + gImgId + '.jpg',
         id: gImgId++,
         keywords: keywords
     }
@@ -89,7 +95,7 @@ function getImgs() {
 }
 
 function setCurrImg(id) {
-    gCurrImg = gImgs[id-1];
+    gCurrImg = gImgs[id - 1];
 }
 
 function createMeme() {
@@ -104,7 +110,7 @@ function createMeme() {
                 align: 'center',
                 colorStroke: 'black',
                 colorFill: 'white',
-                positionX: gElCanvas.width/2,
+                positionX: gElCanvas.width / 2,
                 positionY: 50
             },
             {
@@ -114,36 +120,33 @@ function createMeme() {
                 align: 'center',
                 colorStroke: 'black',
                 colorFill: 'white',
-                positionX: gElCanvas.width/2,
-                positionY: gElCanvas.width-50
+                positionX: gElCanvas.width / 2,
+                positionY: gElCanvas.width - 50
             }
         ]
     }
 }
 
+function getCanvas() {
+    gElCanvas = document.querySelector('canvas');
+    gCtx = gElCanvas.getContext('2d');
+}
 
-
-gElCanvas = document.querySelector('canvas');
-gCtx = gElCanvas.getContext('2d');
 
 function drawCanvas() {
-    // draw image
     var img = new Image()
     img.src = gCurrImg.url;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
-        // drawText(gMeme.lines[gMeme.selectedLineIdx].txt, gMeme.lines[gMeme.selectedLineIdx].positionX, gMeme.lines[gMeme.selectedLineIdx].positionY);
         drawTexts();
     }
 }
 
 function drawCanvasWithMark() {
-    // draw image
     var img = new Image()
     img.src = gCurrImg.url;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
-        // drawText(gMeme.lines[gMeme.selectedLineIdx].txt, gMeme.lines[gMeme.selectedLineIdx].positionX, gMeme.lines[gMeme.selectedLineIdx].positionY);
         drawTexts();
         markText();
     }
@@ -189,7 +192,7 @@ function moveDown() {
 }
 
 function switchLine() {
-    if (gMeme.selectedLineIdx !== gMeme.lines.length-1) gMeme.selectedLineIdx++;
+    if (gMeme.selectedLineIdx !== gMeme.lines.length - 1) gMeme.selectedLineIdx++;
     else gMeme.selectedLineIdx = 0;
     drawCanvasWithMark();
 }
@@ -204,7 +207,7 @@ function markText() {
     var height = currMemeLine.size;
     // var height = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt).height;
     gCtx.beginPath();
-    gCtx.rect(currMemeLine.positionX - (width/2), currMemeLine.positionY - height + 2, width, height);
+    gCtx.rect(currMemeLine.positionX - (width / 2), currMemeLine.positionY - height + 2, width, height);
     gCtx.strokeStyle = 'white';
     gCtx.lineWidth = '1';
     gCtx.stroke();
@@ -237,7 +240,7 @@ function setFont(font) {
 
 function addLine() {
     if (gMeme.lines.length === 0) createMeme();
-    var newPosY = (gMeme.lines[gMeme.lines.length-1].positionY + gMeme.lines[gMeme.lines.length-2].positionY) / 2;
+    var newPosY = (gMeme.lines[gMeme.lines.length - 1].positionY + gMeme.lines[gMeme.lines.length - 2].positionY) / 2;
     var newLine = {
         txt: 'Text',
         size: 30,
@@ -245,7 +248,7 @@ function addLine() {
         align: 'center',
         colorStroke: 'black',
         colorFill: 'white',
-        positionX: gElCanvas.width/2,
+        positionX: gElCanvas.width / 2,
         positionY: newPosY
     }
     gMeme.lines.push(newLine);
@@ -257,21 +260,62 @@ function deleteLine() {
     drawCanvas();
 }
 
+function saveMeme() {
+    var dataUrl = gElCanvas.toDataURL();
+    gMyMemes.push(dataUrl);
+    saveToLocalStorage('My Memes', gMyMemes);
+}
 
+function saveToLocalStorage(key, val) {
+    var json = JSON.stringify(val);
+    localStorage.setItem(key, json);
+}
 
-function onDownloadCanvas(elLink) {
+function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my_meme';
 }
 
 function searchImgs(keyword) {
-    console.log(keyword)
+    gIsFiltering = true;
+    gKeywords[keyword]++;
+    renderKeywords();
     var filteredImgs = gImgs.filter(img => img.keywords.includes(keyword, 0));
-    console.log(filteredImgs);
     renderImgs(filteredImgs);
+    gIsFiltering = false;
 }
 
-function sortKeywords() {
-   
+
+
+function uploadImg(elForm, ev) {
+    ev.preventDefault();
+    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share on Facebook   
+        </a>`
+    }
+
+    doUploadImg(elForm, onSuccess);
+}
+
+
+function doUploadImg(elForm, onSuccess) {
+    var formData = new FormData(elForm);
+    fetch('http://ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(function (res) {
+            return res.text()
+        })
+        .then(onSuccess)
+        .catch(function (err) {
+            console.error(err)
+        })
 }

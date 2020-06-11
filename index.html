@@ -9,25 +9,28 @@
 </head>
 
 <body onload="onInit()">
-
-    <header class="flex space-between align-center">
-        <!-- <div class="header-container"> -->
+    <div class="screen" onclick="onToggleMenu()"></div>
+    <header >
+        <div class="header-container container flex space-between align-center">
         <div class="logo">meme<span>gen</span></div>
+        <button class="btn-menu" onclick="onToggleMenu()">☰</button>
         <ul class="nav-bar clean-list">
             <li><a href="index.html">Gallery</a></li>
-            <li><a href="#">My Memes</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="memes.html">My Memes</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
-        <!-- </div> -->
+        </div>
     </header>
 
-    <section class="gallery">
-        <!-- <p>Choose a picture</p> -->
-        <div class="search-container">
-            <input id="keywords-list" list="keywords" type="text" placeholder="Search">
-            <img src="/DESIGN/Meme1 - Sergei/ICONS/search-icon.png" alt="" class="icon-search" onclick="onSearch()">
-            <datalist id="keywords"></datalist>
-            <div class="keywords"></div>
+    <section class="gallery container">
+        <div class="search-container flex center wrap">
+            <div class="search-field">
+                <input id="keywords-list" list="keywords" type="text" placeholder="Search">
+                <img src="/DESIGN/Meme1 - Sergei/ICONS/search-icon.png" alt="" class="icon-search" onclick="onSearch()">
+                <datalist id="keywords"></datalist>
+            </div>
+            <ul class="keywords flex wrap clean-list"></ul>
+
         </div>
 
         <div class="images-container"></div>
@@ -36,9 +39,9 @@
 
     <section class="meme-section">
         <div class="meme-container flex center">
-            <section>
+            <!-- <section> -->
                 <canvas width="500" height="500"></canvas>
-            </section>
+            <!-- </section> -->
 
             <section class="editor-container">
                 <div>
@@ -79,7 +82,15 @@
                 </div>
 
                 <div class="load-container">
+                    <button class="save" onclick="onSave()">Save</button>
                     <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
+                    <form class="share" action="" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="btn" type="submit">Share</button>
+                        <div class="share-container"></div>
+                    </form>
+
+                    
                 </div>
 
 
@@ -89,7 +100,7 @@
     </section>
 
 
-    <footer>
+    <footer class="flex center align-center">
         <div class="logo">meme<span>gen</span></div>
         <div class="copyright">&copy All Rights Reserved 2020</div>
     </footer>
