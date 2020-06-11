@@ -2,11 +2,11 @@
 var gElCanvas;
 var gCtx;
 
-gElCanvas = document.querySelector('canvas');
-gCtx = gElCanvas.getContext('2d');
 
 function onInit() {
-renderMemes();
+    gElCanvas = document.querySelector('canvas');
+    gCtx = gElCanvas.getContext('2d');
+    renderMemes();
 }
 
 function renderMemes() {

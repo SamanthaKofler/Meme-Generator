@@ -30,7 +30,7 @@
                 <datalist id="keywords"></datalist>
             </div>
             <ul class="keywords flex wrap clean-list"></ul>
-
+            <div class="more-keywords" onclick="onShowMoreKeywords()">more</div>
         </div>
 
         <div class="images-container"></div>
@@ -39,9 +39,11 @@
 
     <section class="meme-section">
         <div class="meme-container flex center">
-            <!-- <section> -->
-                <canvas width="500" height="500"></canvas>
-            <!-- </section> -->
+
+                <canvas width="500" height="500"
+                onmousedown="drag(event)"
+        onmousemove="drag(event)" onmouseup="drop()" ontouchstart="drag(event)" ontouchmove="drag(event)"
+        ontouchend="drop()"></canvas>
 
             <section class="editor-container flex wrap">
                 <div>
@@ -70,10 +72,10 @@
                 
                 <div class="font-and-color">
                     <select name="font-family" id="font-family" onchange="onSetFont(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="Arial">Arial</option>
-                        <option value="monospace">Monospace</option>
-                        <option value="Georgia">Georgia</option>
+                        <option value="Impact" style="font-family: Impact">Impact</option>
+                        <option value="Arial" style="font-family: Arial">Arial</option>
+                        <option value="monospace" style="font-family: monospace">Monospace</option>
+                        <option value="Georgia" style="font-family: Georgia">Georgia</option>
                     </select>
                     <div class="color-picker">
                         <img src="./DESIGN/Meme1 - Sergei/ICONS/text stroke.png" alt="" class="icon stroke-color">

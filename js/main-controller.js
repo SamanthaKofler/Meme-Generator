@@ -9,7 +9,6 @@ function onInit() {
 
 function renderImgs(imgs) {
     if (!gIsFiltering) imgs = getImgs();
-    console.log(imgs)
     var strHTML = imgs.map(function (img) {
         return `<img class="image" src="${img.url}" alt="" onclick="onStart('${img.id}')">`
     }).join('');
@@ -82,6 +81,7 @@ function onSetFillColor(color) {
 }
 
 function onSetFont(font) {
+    document.querySelector('#font-family').style.fontFamily = font;
     setFont(font);
 }
 
@@ -112,4 +112,10 @@ function onSave() {
 
 function onToggleMenu() {
     document.body.classList.toggle('menu-open');
+}
+
+function onShowMoreKeywords() {
+    var elKeywords = document.querySelectorAll('.mode-keywords');
+    elKeywords.forEach(keyword => keyword.style.display = 'flex');
+    document.querySelector('.more-keywords').style.display = 'none';
 }

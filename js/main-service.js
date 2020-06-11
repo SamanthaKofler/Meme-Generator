@@ -5,6 +5,7 @@ var gImgId = 1;
 var gCurrImg;
 var gIsFiltering = false;
 var gMyMemes = [];
+var gIsDragging = false;
 
 var gElCanvas;
 var gCtx;
@@ -47,9 +48,9 @@ var gKeywords = {
 function getSomeKeywords() {
     var selectedKeywords = {
         'funny': gKeywords.funny,
-        'person': gKeywords.person,
         'animal': gKeywords.animal,
         'cute': gKeywords.cute,
+        'person': gKeywords.person,
         'president': gKeywords.president,
         'child': gKeywords.child
     }
@@ -205,14 +206,11 @@ function markText() {
     var currMemeLine = gMeme.lines[gMeme.selectedLineIdx];
     var width = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt).width;
     var height = currMemeLine.size;
-    // var height = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt).height;
     gCtx.beginPath();
     gCtx.rect(currMemeLine.positionX - (width / 2), currMemeLine.positionY - height + 2, width, height);
     gCtx.strokeStyle = 'white';
-    gCtx.lineWidth = '1';
+    gCtx.lineWidth = '2';
     gCtx.stroke();
-    // gCtx.fillStyle = 'orange';
-    // gCtx.fillRect(gMeme.lines[g.Meme.selectedLineIdx].positionX, gMeme.lines[g.Meme.selectedLineIdx].positionY, 150, gMeme.lines[gMeme.selectedLineIdx].size);
 }
 
 function setStrokeColor(color) {
@@ -233,7 +231,6 @@ function alignText(direction) {
 
 function setFont(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
-    // gMeme.lines[gMeme.selectedLineIdx].align = direction;
     drawCanvas();
 }
 
@@ -287,7 +284,6 @@ function searchImgs(keyword) {
 }
 
 
-
 function uploadImg(elForm, ev) {
     ev.preventDefault();
     document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
@@ -320,8 +316,25 @@ function doUploadImg(elForm, onSuccess) {
         })
 }
 
-
-
-
 // drag n drop
 
+  function drag(ev) {
+    if (ev.type === 'mousedown' || ev.type === 'touchstart') {
+        gIsDragging = true;
+        console.log(ev);
+    }
+    if (!gIsDragging) return;
+    if (ev.type === 'mousedown' || ev.type === 'mousemove') var { offsetX, offsetY } = ev;
+    else {
+        offsetX = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+        offsetY = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+    }
+    var line = gMeme.lines[gMeme.selectedLineIdx];
+    line.positionX = offsetX;
+    line.positionY = offsetY;
+    drawCanvas();
+}
+
+function drop() {
+    gIsDragging = false;
+}
