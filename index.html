@@ -43,7 +43,7 @@
                 <canvas width="500" height="500"></canvas>
             <!-- </section> -->
 
-            <section class="editor-container">
+            <section class="editor-container flex wrap">
                 <div>
                     <input id="text" type="text" placeholder="Your text" oninput="setText(this.value)">
                 </div>
@@ -67,20 +67,23 @@
                     <img src="./DESIGN/Meme1 - Sergei/ICONS/align-to-right.png" alt="" class="icon"
                         onclick="onAlign('left')">
                 </div>
-                <div>
-
+                
+                <div class="font-and-color">
                     <select name="font-family" id="font-family" onchange="onSetFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
                         <option value="monospace">Monospace</option>
                         <option value="Georgia">Georgia</option>
                     </select>
-                    <img src="./DESIGN/Meme1 - Sergei/ICONS/text stroke.png" alt="" class="icon">
-                    <input type="color" class="color" onblur="onSetStrokeColor(this.value)">
-                    <img src="./DESIGN/Meme1 - Sergei/ICONS/paint-board-and-brush.png" alt="" class="icon">
-                    <input type="color" class="color" onblur="onSetFillColor(this.value)">
-                </div>
+                    <div class="color-picker">
+                        <img src="./DESIGN/Meme1 - Sergei/ICONS/text stroke.png" alt="" class="icon stroke-color">
+                        <input type="color" class="color stroke-color" onblur="onSetStrokeColor(this.value)">
+                        <img src="./DESIGN/Meme1 - Sergei/ICONS/paint-board-and-brush.png" alt="" class="icon fill-color">
+                        <input type="color" class="color fill-color" onblur="onSetFillColor(this.value)">
 
+                    </div>
+                
+                </div>
                 <div class="load-container">
                     <button class="save" onclick="onSave()">Save</button>
                     <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>

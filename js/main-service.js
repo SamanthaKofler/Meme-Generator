@@ -319,3 +319,9 @@ function doUploadImg(elForm, onSuccess) {
             console.error(err)
         })
 }
+
+
+
+
+// drag n drop
+

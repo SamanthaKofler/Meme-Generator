@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 img {
@@ -59,7 +60,7 @@ header li a {
     font-weight: bold;
 }
 
-header li a:hover {
+header li a:hover, header li a:active {
     color: #c2185b;
 }
 
@@ -134,16 +135,14 @@ a {
 }
 
 .editor-container {
-    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
 }
-
-.editor-container div {
-    margin: 20px;
-}
-
 
 #text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     border-radius: 10px;
     margin: 10px;
 }
@@ -155,9 +154,47 @@ a {
     background-color: white;
     border-radius: 10px;
 }
+.font-and-color {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-left: 2rem;
+}
+
+
+.color {
+    opacity: 0;
+    cursor: pointer;
+}
+.color-picker {
+    margin: 0 10px;
+}
+
+.color.stroke-color, .color.fill-color{
+    height: 3rem;
+    width: 3rem;
+}
+.stroke-color {
+    position: absolute;
+}
+
+.fill-color {
+    position: absolute;
+    margin-left: 3.3rem;
+}
+
+#font-family {
+    font-size: 1.1rem;
+    border-radius: 8px;
+    padding: 2px;
+}
 
 .load-container {
     padding: 20px;
+    padding-top: 50px;
+}
+
+.download:active, .share:active, .save:active {
+    color: #c2185b;
 }
 
 .download {
@@ -230,7 +267,12 @@ footer .logo {
 } */
 
 
+
 @media (max-width: 550px) {
+    body {
+        width: 100%;
+
+    }
     .btn-menu {
         cursor: pointer;
         visibility: visible;
@@ -274,7 +316,7 @@ footer .logo {
         opacity: 1;
     }
     .images-container {
-        grid-template-columns: repeat(2, 200px);
+        grid-template-columns: repeat(2, 1fr);
     }
     .gallery-container {
         position: relative;
