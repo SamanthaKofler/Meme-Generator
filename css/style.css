@@ -128,8 +128,6 @@ header li a:hover, header li a:active {
 }
 
 
-
-
 /* editor */
 
 .meme-container {
@@ -160,12 +158,15 @@ header li a:hover, header li a:active {
     background-color: white;
     border-radius: 10px;
 }
+
+.icon:hover {
+    transform: scale(1.1, 1.1);
+}
 .font-and-color {
     display: inline-flex;
     align-self: flex-start;
     margin-left: 2rem;
 }
-
 
 .color {
     opacity: 0;
@@ -196,29 +197,32 @@ header li a:hover, header li a:active {
     outline: none;
 }
 
+.sticker {
+    width: 4rem;
+    margin-top: 1rem;
+}
+.sticker:hover {
+    transform: scale(1.2,1.2);
+}
+
 .load-container {
     padding: 20px;
     padding-top: 50px;
+}
+
+.download, .share, .save {
+    margin: 0.4rem;
 }
 
 .download:active, .share:active, .save:active {
     color: #c2185b;
 }
 
-.download {
-    padding: 8px;
-    background-color:  lightsalmon;
-    color: white;
-    font-size: 1rem;
-    border-radius: 8px;
-    box-shadow: 2px -2px 2px 0px rgba(0,0,0,0.75);
-}
-
 .share {
     display: inline;
 }
 
-.share .btn, .save {
+.share .btn, .save, .download {
     padding: 8px;
     background-color:  lightsalmon;
     color: white;

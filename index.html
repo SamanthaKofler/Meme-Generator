@@ -82,9 +82,17 @@
                         <input type="color" class="color stroke-color" onblur="onSetStrokeColor(this.value)">
                         <img src="./DESIGN/Meme1 - Sergei/ICONS/paint-board-and-brush.png" alt="" class="icon fill-color">
                         <input type="color" class="color fill-color" onblur="onSetFillColor(this.value)">
-
-                    </div>
-                
+                    </div>  
+                </div>
+                <div>
+                    <img class="sticker" src="./DESIGN/stickers/hat.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)" onmousedown="dragSticker(event)"
+                    onmousemove="dragSticker(event)" onmouseup="dropSticker()" ontouchstart="drag(event)" ontouchmove="drag(event)"
+                    ontouchend="drop()">
+                    <img class="sticker" src="./DESIGN/stickers/thought-bubble.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/umbrella.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/drink.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/glasses.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/music.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
                 </div>
                 <div class="load-container">
                     <button class="save" onclick="onSave()">Save</button>

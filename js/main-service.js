@@ -325,10 +325,7 @@ function doUploadImg(elForm, onSuccess) {
 // drag n drop
 
   function drag(ev) {
-    if (ev.type === 'mousedown' || ev.type === 'touchstart') {
-        gIsDragging = true;
-        console.log(ev);
-    }
+    if (ev.type === 'mousedown' || ev.type === 'touchstart') gIsDragging = true;
     if (!gIsDragging) return;
     if (ev.type === 'mousedown' || ev.type === 'mousemove') var { offsetX, offsetY } = ev;
     else {
@@ -343,4 +340,27 @@ function doUploadImg(elForm, onSuccess) {
 
 function drop() {
     gIsDragging = false;
+}
+
+// function dragSticker(ev) {
+//     if (ev.type === 'mousedown' || ev.type === 'touchstart') gIsDragging = true;
+//     if (!gIsDragging) return;
+//     if (ev.type === 'mousedown' || ev.type === 'mousemove') var { offsetX, offsetY } = ev;
+//     else {
+//         offsetX = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+//         offsetY = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+//     }
+//     // var line = gMeme.lines[gMeme.selectedLineIdx];
+//     // line.positionX = offsetX;
+//     // line.positionY = offsetY;
+//     drawCanvas();
+// }
+
+
+function putSticker(elImg, imgSrc) {
+    var img = new Image()
+    img.src = imgSrc;
+    img.onload = () => {
+        gCtx.drawImage(img, gElCanvas.width/2, gElCanvas.height/2, elImg.width, elImg.height) //img,x,y,xend,yend
+    }
 }

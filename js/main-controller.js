@@ -119,3 +119,7 @@ function onShowMoreKeywords() {
     elKeywords.forEach(keyword => keyword.style.display = 'flex');
     document.querySelector('.more-keywords').style.display = 'none';
 }
+
+function onPutSticker(elImg, imgSrc) {
+    putSticker(elImg, imgSrc);
+}
