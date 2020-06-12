@@ -99,7 +99,7 @@ function drawCanvasWithMark() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
         drawTexts();
         if (meme.stickers.length) drawStickers();
-        markText();
+        mark();
     }
 }
 
@@ -121,7 +121,7 @@ function drawText(text, x, y, idx) {
     gCtx.strokeText(text, x, y);
 }
 
-function markText() {
+function mark() {
     var currMemeElement = findCurrElement();
     var meme = getMeme();
     var width = gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width;
@@ -257,6 +257,7 @@ function doUploadImg(elForm, onSuccess) {
 }
 
 function drag(ev) {
+    preventDefault(ev);
     if (ev.type === 'mousedown' || ev.type === 'touchstart') gIsDragging = true;
     if (!gIsDragging) return;
     if (ev.type === 'mousedown' || ev.type === 'mousemove') var { offsetX, offsetY } = ev;
