@@ -47,7 +47,7 @@
 
             <section class="editor-container flex wrap">
                 <div>
-                    <input id="text" type="text" placeholder="Your text" oninput="setText(this.value)">
+                    <input id="text" type="text" placeholder="Your text" oninput="onSetText(this.value)">
                 </div>
                 <div>
                     <img src="./DESIGN/arrow-up.png" alt="" class="icon" onclick="onMoveUp()">
@@ -59,9 +59,9 @@
                 </div>
                 <div>
                     <img src="./DESIGN/Meme1 - Sergei/ICONS/increase font - icon.png" alt="" class="icon"
-                        onclick="onIncreaseFont()">
+                        onclick="onChangeSize(+2)">
                     <img src="./DESIGN/Meme1 - Sergei/ICONS/decrease font - icon.png" alt="" class="icon"
-                        onclick="onDecreaseFont()">
+                        onclick="onChangeSize(-2)">
                     <img src="./DESIGN/Meme1 - Sergei/ICONS/align-to-left.png" alt="" class="icon"
                         onclick="onAlign('right')">
                     <img src="./DESIGN/Meme1 - Sergei/ICONS/center-text-alignment.png" alt="" class="icon"
@@ -85,14 +85,12 @@
                     </div>  
                 </div>
                 <div>
-                    <img class="sticker" src="./DESIGN/stickers/hat.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)" onmousedown="dragSticker(event)"
-                    onmousemove="dragSticker(event)" onmouseup="dropSticker()" ontouchstart="drag(event)" ontouchmove="drag(event)"
-                    ontouchend="drop()">
-                    <img class="sticker" src="./DESIGN/stickers/thought-bubble.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
-                    <img class="sticker" src="./DESIGN/stickers/umbrella.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
-                    <img class="sticker" src="./DESIGN/stickers/drink.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
-                    <img class="sticker" src="./DESIGN/stickers/glasses.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
-                    <img class="sticker" src="./DESIGN/stickers/music.png" alt="" onclick="onPutSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/hat.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/thought-bubble.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/umbrella.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/drink.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/glasses.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
+                    <img class="sticker" src="./DESIGN/stickers/music.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
                 </div>
                 <div class="load-container">
                     <button class="save" onclick="onSave()">Save</button>

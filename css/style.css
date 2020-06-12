@@ -199,7 +199,7 @@ header li a:hover, header li a:active {
 
 .sticker {
     width: 4rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 .sticker:hover {
     transform: scale(1.2,1.2);
@@ -207,7 +207,6 @@ header li a:hover, header li a:active {
 
 .load-container {
     padding: 20px;
-    padding-top: 50px;
 }
 
 .download, .share, .save {
@@ -348,5 +347,8 @@ footer .logo {
     canvas {
         margin: 0 auto;
         width: 100%;
+    }
+    .font-and-color {
+        margin-left: 5rem;
     }
 }

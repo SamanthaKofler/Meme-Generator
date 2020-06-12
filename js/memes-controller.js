@@ -5,7 +5,7 @@ function onInit() {
 }
 
 function renderMemes() {
-    var memeURLs = loadFromStorage('My Memes');
+    var memeURLs = JSON.parse(localStorage.getItem('My Memes'));
     renderCanvases(memeURLs.length);
     var idx = 0;
     memeURLs.forEach(function(memeURL) {
@@ -27,10 +27,4 @@ function renderCanvases(num) {
     strHTMLs.push(strHTML);
     }
     document.querySelector('.meme-gallery').innerHTML = strHTMLs.join('');
-}
-
-
-function loadFromStorage(key) {
-    var val = localStorage.getItem(key)
-    return JSON.parse(val)
 }
