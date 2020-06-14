@@ -180,11 +180,16 @@ function moveDown() {
 }
 
 function switchLine() {
-    if (gElementId-1 !== gMeme.selectedElementId) gMeme.selectedElementId++;
+    if (gElementId - 1 !== gMeme.selectedElementId) gMeme.selectedElementId++;
     else gMeme.selectedElementId = 1;
     var currElement = findCurrElement();
-    if(currElement.txt) gMeme.selectedLineIdx = currElement.lineIdx;
+    if (currElement.txt) gMeme.selectedLineIdx = currElement.lineIdx;
 }
+
+// function changeContent(field, value) {
+//     var currElement = findCurrElement();
+//     currElement[field] = value;
+// }
 
 function alignText(direction) {
     var currElement = findCurrElement();
@@ -225,8 +230,8 @@ function addLine() {
 }
 
 function deleteLine() {
-    var currElement = findCurrElement();   
-    if (currElement.txt) gMeme.lines.splice(gMeme.selectedLineIdx,1);
+    var currElement = findCurrElement();
+    if (currElement.txt) gMeme.lines.splice(gMeme.selectedLineIdx, 1);
     else gMeme.stickers.splice(gMeme.selectedStickerIdx, 1);
     // update id's
     gMeme.lines.forEach(line => {
@@ -242,7 +247,7 @@ function deleteLine() {
         }
     });
     gElementId--;
-    gMeme.selectedElementId =1;
+    gMeme.selectedElementId = 1;
     gMeme.selectedLineIdx = 0;
     gMeme.selectedStickerIdx = 0;
 }
@@ -250,12 +255,12 @@ function deleteLine() {
 function addSticker(elImg, imgSrc) {
     var currSticker = {};
     currSticker['src'] = imgSrc;
-    currSticker['positionX'] = gElCanvas.width/2;
-    currSticker['positionY'] = gElCanvas.height/2;
+    currSticker['positionX'] = gElCanvas.width / 2;
+    currSticker['positionY'] = gElCanvas.height / 2;
     currSticker['width'] = elImg.width;
     currSticker['height'] = elImg.height;
     currSticker['id'] = gElementId++;
-    currSticker['stickerIdx'] = gMeme.stickers.length-1;
+    currSticker['stickerIdx'] = gMeme.stickers.length - 1;
     gMeme.stickers.push(currSticker);
 }
 

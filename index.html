@@ -16,9 +16,9 @@
         <div class="logo">meme<span>gen</span></div>
         <button class="btn-menu" onclick="onToggleMenu()">☰</button>
         <ul class="nav-bar clean-list">
-            <li><a href="index.html">Gallery</a></li>
-            <li><a href="memes.html">My Memes</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html" data-trans="nav-gallery">Gallery</a></li>
+            <li><a href="memes.html" data-trans="nav-my-memes">My Memes</a></li>
+            <li><a href="about.html" data-trans="nav-about">About</a></li>
         </ul>
         </div>
     </header>
@@ -26,14 +26,18 @@
     <section class="gallery container">
         <div class="search-container flex center wrap">
             <div class="search-field">
-                <input id="keywords-list" list="keywords" type="text" placeholder="Search">
+                <input id="keywords-list" list="keywords" type="text" data-trans="placeholder-search" placeholder="Search">
                 <img src="/DESIGN/Meme1 - Sergei/ICONS/search-icon.png" alt="" class="icon-search" onclick="onSearch()">
                 <datalist id="keywords"></datalist>
             </div>
             <ul class="keywords flex wrap clean-list"></ul>
-            <div class="more-keywords" onclick="onShowMoreKeywords()">more</div>
+            <div class="more-keywords" data-trans="show-more" onclick="onShowMoreKeywords()">show more</div>
         </div>
-
+        <!-- <select class="language" onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+            <option value="de">Deutsch</option> -->
+        <!-- </select> -->
         <div class="images-container"></div>
 
     </section>
@@ -94,30 +98,25 @@
                     <img class="sticker" src="./DESIGN/stickers/music.png" alt="" onclick="onAddSticker(this, event.srcElement.attributes[1].value)">
                 </div>
                 <div class="load-container">
-                    <button class="save" onclick="onSave()">Save</button>
-                    <a class="download" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
+                    <button class="save" data-trans="save-btn" onclick="onSave()">Save</button>
+                    <a class="download" data-trans="download-btn" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
                     <form class="share" action="" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
-                        <button class="btn" type="submit">Share</button>
+                        <button class="btn" data-trans="share-btn" type="submit">Share</button>
                         <div class="share-container"></div>
-                    </form>
-
-                    
+                    </form>                    
                 </div>
-
-
             </section>
         </div>
-
     </section>
-
 
     <footer class="flex center align-center">
         <div class="logo">meme<span>gen</span></div>
-        <div class="copyright">&copy All Rights Reserved 2020</div>
+        <div class="copyright" data-trans="copyright">&copy All Rights Reserved 2020</div>
     </footer>
 
     <script src="js/main-service.js"></script>
+    <!-- <script src="js/i18n-service.js"></script> -->
     <script src="js/main-controller.js"></script>
 </body>
 

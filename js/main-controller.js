@@ -9,6 +9,7 @@ var gIsDragging = false;
 
 function onInit() {
     createImgs();
+    // doTrans();
     renderImgs();
     renderDatalist();
     renderKeywords();
@@ -27,7 +28,7 @@ function renderDatalist() {
     var keywords = getAllKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
-        strHTMLs.push(`<option value="${keyword}">`);
+        strHTMLs.push(`<option data-trans="${keyword}" value="${keyword}">`);
     }
     document.querySelector('#keywords').innerHTML = strHTMLs.join('');
 }
@@ -36,7 +37,7 @@ function renderKeywords() {
     var keywords = getSomeKeywords();
     var strHTMLs = [];
     for (var keyword in keywords) {
-        var strHTML = `<li class="mode-keywords" style="font-size:${keywords[keyword] * 0.3}rem" onclick="searchImgs('${keyword}')">${keyword}</li>`;
+        var strHTML = `<li class="mode-keywords" data-trans="${keyword}" style="font-size:${keywords[keyword] * 0.3}rem" onclick="searchImgs('${keyword}')">${keyword}</li>`;
         strHTMLs.push(strHTML);
     }
     document.querySelector('.keywords').innerHTML = strHTMLs.join('');
@@ -49,6 +50,16 @@ function onSearch() {
         return;
     };
     searchImgs(searchedKeyword);
+}
+
+function onSetLang(lang) {
+        setLang(lang);
+        // if lang is hebrew add RTL class to document.body
+        if (lang === 'he') document.body.classList.add('rtl');
+        else document.body.classList.remove('rtl');
+        doTrans();
+        renderDatalist();
+        renderKeywords();
 }
 
 // *mobile only*
@@ -257,7 +268,7 @@ function doUploadImg(elForm, onSuccess) {
 }
 
 function drag(ev) {
-    preventDefault(ev);
+    ev.preventDefault();
     if (ev.type === 'mousedown' || ev.type === 'touchstart') gIsDragging = true;
     if (!gIsDragging) return;
     if (ev.type === 'mousedown' || ev.type === 'mousemove') var { offsetX, offsetY } = ev;
