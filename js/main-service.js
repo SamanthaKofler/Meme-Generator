@@ -162,11 +162,12 @@ function setText(txt) {
 }
 
 function changeSize(diff) {
+    var changeFactor = 3;
     var currElement = findCurrElement();
-    if (currElement.size) currElement.size += diff;
+    if (currElement.size) currElement.size += diff * changeFactor;
     else {
-        currElement.width += diff;
-        currElement.height += diff;
+        currElement.width += diff * changeFactor;
+        currElement.height += diff * changeFactor;
     }
 }
 

@@ -1,0 +1,194 @@
+/* MAIN */
+
+/* gallery */
+
+.search-container {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.search-field {
+    display: inline;
+}
+
+.mode-keywords {
+    margin: 20px;
+}
+
+.mode-keywords:hover {
+    cursor: pointer;
+}
+
+.more-keywords {
+    display: none;
+    color: gray;
+    cursor: pointer;
+}
+
+.search-container input {
+    font-size: 1.4rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.search-container .icon-search {
+    width: 1.5rem;
+}
+
+.images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: center;
+    grid-gap: 10px;
+    margin: 1rem;
+}
+
+.gallery .image {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.gallery .image:hover {
+    border: 5px solid #c2185b;
+}
+
+/* editor */
+
+.meme-container {
+    padding: 1rem;
+    background-color: lightgray;
+}
+
+.meme-section {
+    display: none;
+}
+
+.editor-container {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+#text {
+    font-size: 1.4rem;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.icon {
+    width: 3rem;
+    height: auto;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.icon:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.font-and-color {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-left: 2rem;
+}
+
+.color {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.color-picker {
+    margin: 0 10px;
+}
+
+.color.stroke-color, .color.fill-color {
+    height: 3rem;
+    width: 3rem;
+}
+
+.stroke-color {
+    position: absolute;
+}
+
+.fill-color {
+    position: absolute;
+    margin-left: 3.3rem;
+}
+
+#font-family {
+    font-size: 1.1rem;
+    border-radius: 8px;
+    padding: 2px;
+    font-family: Impact;
+    outline: none;
+}
+
+.sticker {
+    width: 4rem;
+    margin-top: 2rem;
+}
+
+.sticker:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.load-container {
+    padding: 20px;
+}
+
+.download, .share, .save {
+    margin: 0.4rem;
+}
+
+.download:active, .share:active, .save:active {
+    color: #c2185b;
+}
+
+.share {
+    display: inline;
+}
+
+.share .btn, .save, .download {
+    padding: 8px;
+    background-color: lightsalmon;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px -2px 2px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+    .mode-keywords:not(:first-child):not(:nth-child(2)):not(:nth-child(3)) {
+        display: none;
+    }
+    .more-keywords {
+        display: block;
+    }
+    .images-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-container {
+        position: relative;
+    }
+    .gallery .image {
+        width: 100%;
+        height: auto;
+    }
+    .meme-container {
+        flex-direction: column;
+    }
+    canvas {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .font-and-color {
+        margin-left: 5rem;
+    }
+}
